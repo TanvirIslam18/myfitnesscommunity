@@ -1,0 +1,118 @@
+
+{% extends 'main/base.html'  %}
+{% load static %}
+
+
+
+{% block content %}
+  
+<div class="container">
+    <div class="row p-4 mt-3 gx-5"
+      style="
+        border-radius: 10px;
+        background: rgba(9, 76, 121, 0.278);
+        background: radial-gradient(circle,rgba(9, 76, 121, 0.274) 0%,rgba(0, 213, 255, 0.305) 100%);">
+
+        <div class="col-12">
+            <div class="row" style="border: 4px solid rgb(9, 77, 121); border-radius: 10px">
+                <div class="mt-2 col-sm-12 col-md-4 d-flex justify-content-center align-items-center">
+                    <label for="file-input" id="image-label">
+                    {% block picture %}
+                    <img id="selected-image" alt="Selected Image" src="{% if person.profileImage %} {{person.profileImage.url}} {% else %} {% static '/images/profile.jpg' %} {% endif %}"
+                        style="
+                        width: 200px;
+                        height: 200px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                        border: 4px solid rgb(9, 77, 121);
+                        padding: 5px;
+                        cursor: pointer;"/>        
+                    </label>
+                    {% endblock picture %}
+                    
+                </div>
+
+                <div style="color: rgb(9, 77, 121)"
+                    class="col-sm-12 col-md-7 d-flex justify-content-center align-items-start flex-column">
+                    <h3>Name: {% block searched_user %}{{request.user}}{% endblock %}</h3>
+                    <div class="d-flex flex-column flex-md-row">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-12 mt-3">
+            <div class="row">
+                <div class="col-sm-12 col-md-3 d-flex justify-content-center align-items-center flex-column p-3"
+                    style="
+                        border-radius: 10px;
+                        background: rgb(9, 77, 121);
+                        background: radial-gradient(
+                            circle,
+                            rgba(9, 76, 121, 0.207) 0%,
+                            rgba(0, 213, 255, 0.26) 100%
+                        );
+                        border: 4px solid rgb(9, 77, 121);
+                        height: 600px;
+                        padding: 20px 0;
+                    ">
+
+                    <a href="{% url 'viewProfile'  %} "><button class="btn btn-light" style="min-width: 150px">Posts</button>
+                    <a href="{% url 'BMI'  %} "><button class="btn btn-light mt-2" style="min-width: 150px">BMI Calculator</button></a>
+                    <a href="{% url 'calorieCalculator'  %} "><button class="btn btn-light mt-2" style="min-width: 150px">calorie calculator</button></a>
+                    <a href="{% url 'viewPlans'  %} "><button class="btn btn-light mt-2" style="min-width: 150px">View plans</button></a>
+                </div>
+                
+
+                <div
+                    class="col-sm-12 col-md-9 d-fex justify-content-center align-items-center text-light"
+                    style="
+                    border-radius: 10px;
+                    background: rgb(9, 77, 121);
+                    background: radial-gradient(
+                        circle,
+                        rgba(9, 76, 121, 0.207) 0%,
+                        rgba(0, 213, 255, 0.26) 100%
+                    );
+                    /* height: 400px; */
+                    border: 4px solid rgb(9, 77, 121);
+                    /* height: 600px; */
+                    ">
+                    {% block info %}
+
+                
+                        <form method="POST" action="{% url 'upload_post' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                    
+                            <div class="form-outline mb-4">
+                            <label class="form-label" for="height-input">Upload</label><br>
+                            {{post_form.post}} 
+                            </div>
+                    
+                            <button type="submit">Submit</button> 
+                        </form>
+                            
+                        <div class="col-md-12 pt-5">
+                            <div class="row">
+                                {% for post in posts %}
+                                <br><br>
+                                <div class="col-md-3">
+                                    <img src="{{ post.post.url }}" alt="" class="post">
+                                    <form action="{% url 'delete_post' post.pk %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endblock info %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+
+{% endblock content %} 

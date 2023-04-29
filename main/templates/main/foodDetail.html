@@ -1,0 +1,117 @@
+{% extends 'main/base.html'  %}
+{% load static %}
+
+
+{% block content %}
+
+<style>
+  body {
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  img {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .row {
+    margin: 0 -15px;
+  }
+  
+  .col-12 {
+    padding: 0 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .col-md-5 {
+    margin-bottom: 20px;
+  }
+  
+  .col-md-7 {
+    padding-left: 50px;
+  }
+  
+  .pb-4 {
+    padding-bottom: 40px;
+  }
+  
+  .text-left {
+    text-align: left;
+  }
+  
+  .img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+</style>
+
+<div class="container text-center">
+  <h1>{{Foods.title}}</h1>
+  <div class="row py-3 mt-3">
+    <div class="col-md-5 img-container">
+      <img src="/{{Foods.foodImage}}"
+        style="height: 300px; width: 100%; object-fit: cover;" />
+    </div>
+    <div class="col-md-7 pb-4">
+      <h1>Steps</h1>
+      <div class="row text-left">
+        <div class="col-12">
+          {{Foods.steps}}
+        </div>
+      </div>
+      <h1>Ingredients</h1>
+      <div class="row text-left">
+        <div class="col-12 mt-2">
+          {{Foods.ingredients}}
+        </div>
+      </div>
+      <h1>Nutrition Facts</h1>
+      <div class="row text-left">
+        <div class="col-12 mt-2">
+          {{Foods.nutrition}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

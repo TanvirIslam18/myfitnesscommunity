@@ -1,0 +1,89 @@
+{% extends 'main/base.html'  %}
+{% load static %}
+<!doctype html>
+<html>
+    <head>
+        <title>
+            {% block title %}
+            Tanvirs website
+            {% endblock title %}
+        </title>
+</head>
+<link rel="stylesheet" type="text/css" href=" {% static '/css/base.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<meta charset="utf-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<body>
+    
+    {% block content %}
+    
+        {% for i in Exercises %}
+
+          <div class="container h-100">
+            <div class="row" style="height: 50vh">
+              <div class="col-sm-12 col-lg-3 d-flex justify-content-lg-center align-items-center align-items-lg-start flex-column">
+                <h1 class="ml-0">{{i.nameOfExercise}}</h1>
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
+                    <h5 class="mb-0">Level:</h5>
+                    <p class="mb-0 ml-2 mt-1">{{i.level}}</p>
+                  </div>
+                  <div class="col-12 d-flex justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
+                    <h5 class="mb-0">Primary Muscle Group:</h5>
+                    <p class="mb-0 ml-2 mt-1">{{i.firstMuscleGroup}}</p>
+                  </div>
+                  <div class="col-12 d-flex justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
+                    <h5 class="mb-0">Seconday Muscle Group:</h5>
+                    <p class="mb-0 ml-2 mt-1">{{i.secondMuscleGroup}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-lg-6 d-flex justify-content-center flex-column align-items-center">
+                <img src="/{{i.workoutImage}}"
+                  style="height: 225px; width: 100%; object-fit: cover; border-radius: 3px;"/>
+              </div>
+              <div class="col-sm-12 col-lg-3 d-flex justify-content-center align-items-center flex-column">
+                <div class="row d-flex justify-content-center flex-column flex-lg-row w-55">
+                  <button type="button" class="btn btn-success ml-lg-2 mt-2 mt-lg-0" data-toggle="modal" data-target="#myModal{{i.id}}">Add <span class="bi bi-plus"></span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="myModal{{i.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="myModalLabel">Select a day to save this workout</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                  <form method="POST" action="{% url 'viewWorkout' %}">
+                    {% csrf_token %}
+                    <label for="day_of_week">Day of the week:</label>
+                    <select name="day_of_week" id="day_of_week">
+                      <option value="monday">Monday</option>
+                      <option value="tuesday">Tuesday</option>
+                      <option value="wednesday">Wednesday</option>
+                      <option value="thursday">Thursday</option>
+                      <option value="friday">Friday</option>
+                      <option value="saturday">Saturday</option>
+                      <option value="sunday">Sunday</option>
+                    </select>
+                    <input type="hidden" name="exercise_id" id="exercise_id" value="{{i.id}}">
+                    <input type="submit" value="Save">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+            
+        {% endfor %}
+    
+    {% endblock content %}
+
+</body>
+</html>

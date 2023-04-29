@@ -1,0 +1,99 @@
+{% extends 'main/viewProfile.html'  %}
+{% load static %}
+
+{% block picture %}
+{% if person.profileImage %}
+  <img id="selected-image" alt="Selected Image" src=" {{person.profileImage.url}} "
+  style="
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid rgb(9, 77, 121);
+    padding: 5px;
+    cursor: pointer;">       
+{% else %}
+  <img id="selected-image" alt="Selected Image" src="{% static '/images/profile.jpg' %}"
+  style="
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid rgb(9, 77, 121);
+    padding: 5px;
+    cursor: pointer;">       
+{% endif %}
+              
+{% endblock picture %}
+
+
+{% block info %}
+
+    <div class="d-flex justify-content-center align-items-center" >
+        <form method="POST">
+          {% csrf_token %}
+  
+          <div class="form-outline mb-4">
+            <label class="form-label" for="height-input">Height (in cm)</label><br>
+            {{form.height}} 
+          </div>
+  
+          <div class="form-outline mb-4">
+            <label class="form-label" for="weight-input">Weight (in kg)</label><br>
+            {{form.weight}} 
+          </div>
+  
+          <button type="submit">Calculate BMI</button>
+  
+          {% if bmi and message %}
+            <p class="mt-4">Your BMI is {{ bmi }}, {{message}}</p>
+          {% endif %}  
+        </form>
+      </div>
+
+{% endblock info %} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form2Example11" placeholder="Height (in meters)">Height</label>
+            {{form.height}} 
+        </div>
+
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form2Example11" placeholder="Weight (in kg)">Weight</label>
+            {{form.weight}} 
+        </div>
+        
+
+        
+        <button type="submit">Calculate BMI</button>
+    </form>
+    <p>Your BMI is {{ bmi }}</p> -->

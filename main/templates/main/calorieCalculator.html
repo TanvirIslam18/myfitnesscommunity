@@ -1,0 +1,68 @@
+{% extends 'main/viewProfile.html'  %}
+{% load static %}
+
+{% block picture %}
+{% if person.profileImage %}
+  <img id="selected-image" alt="Selected Image" src=" {{person.profileImage.url}} "
+  style="
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid rgb(9, 77, 121);
+    padding: 5px;
+    cursor: pointer;">       
+{% else %}
+  <img id="selected-image" alt="Selected Image" src="{% static '/images/profile.jpg' %}"
+  style="
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid rgb(9, 77, 121);
+    padding: 5px;
+    cursor: pointer;">       
+{% endif %}
+
+{% endblock picture %}
+{% block info %}
+
+<div style="width: 400px;">
+    <h1>Calorie Maintenance Calculator</h1>
+    <form method="POST" action="{% url 'calorieCalculator' %}">
+        {% csrf_token %}
+        <div class="form-outline mb-4">
+            <label class="form-label" for="activity_level-input">Gender</label><br>
+            {{ form.gender}} 
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="age-input">Age</label><br>
+            {{form.age}} 
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="height-input">Height</label><br>
+            {{ form.height }} 
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="weight-input">Weight</label><br>
+            {{ form.weight}} 
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="activity_level-input">Activity level</label><br>
+            {{ form.activity_level}} 
+        </div>
+        
+        <button type="submit">Calculate</button>
+
+
+        
+    </form>
+    {% if calorie_maintenance %}
+        <h1>Your calorie maintenance is: {{ calorie_maintenance }}</h1>
+    {% endif %}
+
+    
+</div> 
+
+{% endblock info %}
+

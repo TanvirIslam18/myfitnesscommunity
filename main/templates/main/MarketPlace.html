@@ -1,0 +1,49 @@
+{% extends 'main/base.html'  %}
+{% load static %}
+
+
+{% block content %}
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="text-center my-5">Search eBay Items</h1>
+          <form method="GET">
+            <div class="form-group">
+              <label for="search_gym_item">Search:</label>
+              <input type="text" class="form-control" name="search_gym_item" id="search_gym_item">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+        </div>
+      </div>
+      {% if items %}
+      <div class="row mt-5">
+        <div class="col-12">
+          <h2 class="text-center">Search Results for "{{ search_gym_item }}"</h2>
+        </div>
+      </div>
+      <div class="row mt-3">
+        {% for item in items %}
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
+          <div class="card">
+            <img src="{{ item.image.imageUrl }}" class="card-img-top" style="height: 225px; object-fit: cover;">
+            <div class="card-body d-flex flex-column justify-center text-center" style="border-top: 1px solid;">
+              <h5 class="card-title">{{ item.title }}</h5>
+              <p class="card-text">£{{ item.price.value }}</p>
+              <a href="{{ item.itemWebUrl }}" class="btn btn-primary">Explore</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="row mt-5">
+        <div class="col-12">
+          <h2 class="text-center">No results found for "{{ search_gym_item }}"</h2>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+{% endblock content %}

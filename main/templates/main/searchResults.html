@@ -1,0 +1,242 @@
+{% extends 'main/viewProfile.html'  %}
+{% load static %}
+
+{% block searched_user %}{{person.username}}{% endblock %}
+
+
+{% block info %}
+<div class="row mb-5 pb-4">
+    <div class="col-md-12 pt-5">
+        <h2 class="mb-3">
+            <div>Posts</div>
+        </h2>
+        <div class="row">
+            {% for post in posts %}
+            <br><br>
+            <div class="col-md-3">
+                <img src="{{ post.post.url }}" alt="" class="post">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<h2 class="mt-3">
+    <div>Monday Routine</div>
+</h2>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th scope="col">Muscle Group</th>
+                <th scope="col">Exercise</th>
+                <th scope="col">Level</th>
+                <th scope="col">First Muscle Group</th>
+                <th scope="col">Second Muscle Group</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for routine in monday %}
+            <tr>
+                
+                <td>{{routine.exercise.muscleGroup}}</td>
+                <td>{{routine.exercise.nameOfExercise}}</td>
+                <td>{{routine.exercise.level}}</td>
+                <td>{{routine.exercise.firstMuscleGroup}}</td>
+                <td>{{routine.exercise.secondMuscleGroup}}</td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+</div>
+
+
+<h2 class="mt-4">
+    <div>Tuesday Routine</div>
+</h2>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th scope="col">Muscle Group</th>
+                <th scope="col">Exercise</th>
+                <th scope="col">Level</th>
+                <th scope="col">First Muscle Group</th>
+                <th scope="col">Second Muscle Group</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for routine in tuesday %}
+            <tr>
+                
+                <td>{{routine.exercise.muscleGroup}}</td>
+                <td>{{routine.exercise.nameOfExercise}}</td>
+                <td>{{routine.exercise.level}}</td>
+                <td>{{routine.exercise.firstMuscleGroup}}</td>
+                <td>{{routine.exercise.secondMuscleGroup}}</td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+</div>
+    
+
+<h2 class="mt-4">
+    <div>Wednesday Routine</div>
+</h2>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th scope="col">Muscle Group</th>
+                <th scope="col">Exercise</th>
+                <th scope="col">Level</th>
+                <th scope="col">First Muscle Group</th>
+                <th scope="col">Second Muscle Group</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for routine in wednesday %}
+            <tr>
+                
+                <td>{{routine.exercise.muscleGroup}}</td>
+                <td>{{routine.exercise.nameOfExercise}}</td>
+                <td>{{routine.exercise.level}}</td>
+                <td>{{routine.exercise.firstMuscleGroup}}</td>
+                <td>{{routine.exercise.secondMuscleGroup}}</td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+</div>
+
+
+<h2 class="mt-4">
+    <div>Thursday Routine</div>
+</h2>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th scope="col">Muscle Group</th>
+                <th scope="col">Exercise</th>
+                <th scope="col">Level</th>
+                <th scope="col">First Muscle Group</th>
+                <th scope="col">Second Muscle Group</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for routine in thursday %}
+            <tr>
+                
+                <td>{{routine.exercise.muscleGroup}}</td>
+                <td>{{routine.exercise.nameOfExercise}}</td>
+                <td>{{routine.exercise.level}}</td>
+                <td>{{routine.exercise.firstMuscleGroup}}</td>
+                <td>{{routine.exercise.secondMuscleGroup}}</td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+</div>
+
+
+<h2 class="mt-4">
+    <div>Friday Routine</div>
+</h2>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th scope="col">Muscle Group</th>
+                <th scope="col">Exercise</th>
+                <th scope="col">Level</th>
+                <th scope="col">First Muscle Group</th>
+                <th scope="col">Second Muscle Group</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for routine in friday %}
+            <tr>
+                <td>{{routine.exercise.muscleGroup}}</td>
+                <td>{{routine.exercise.nameOfExercise}}</td>
+                <td>{{routine.exercise.level}}</td>
+                <td>{{routine.exercise.firstMuscleGroup}}</td>
+                <td>{{routine.exercise.secondMuscleGroup}}</td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+</div>
+
+
+<h2 class="mt-4">
+    <div>Saturday Routine</div>
+</h2>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Muscle Group</th>
+                <th scope="col">Exercise</th>
+                <th scope="col">Level</th>
+                <th scope="col">First Muscle Group</th>
+                <th scope="col">Second Muscle Group</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for routine in saturday %}
+            <tr>
+                <td>{{routine.exercise.muscleGroup}}</td>
+                <td>{{routine.exercise.nameOfExercise}}</td>
+                <td>{{routine.exercise.level}}</td>
+                <td>{{routine.exercise.firstMuscleGroup}}</td>
+                <td>{{routine.exercise.secondMuscleGroup}}</td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+</div>
+
+
+<h2 class="mt-4">
+    <div>Sunday Routine</div>
+</h2>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>               
+                <th scope="col">Muscle Group</th>
+                <th scope="col">Exercise</th>
+                <th scope="col">Level</th>
+                <th scope="col">First Muscle Group</th>
+                <th scope="col">Second Muscle Group</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for routine in sunday %}
+            <tr>               
+                <td>{{routine.exercise.muscleGroup}}</td>
+                <td>{{routine.exercise.nameOfExercise}}</td>
+                <td>{{routine.exercise.level}}</td>
+                <td>{{routine.exercise.firstMuscleGroup}}</td>
+                <td>{{routine.exercise.secondMuscleGroup}}</td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+</div>
+
+{% endblock info %}
